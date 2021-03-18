@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+
+Route::get('chat/whit/{user}','App\Http\Controllers\ChatController@chat_whit')->name('chat.whit');
+Route::get('chat/{chat}','App\Http\Controllers\ChatController@show')->name('chat.show');
